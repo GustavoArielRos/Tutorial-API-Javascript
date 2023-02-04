@@ -1,0 +1,76 @@
+<!-- 
+    
+Fetch: 
+     - fornece uma maneira facil para busrcar recursos de forma assíncrona através das redes
+
+Recursos assíncronos: 
+     - vai ser recebido e lido antes dos demais recursos
+
+
+Promise javascript:
+     - exemplo:
+         Promesa PC
+            Pendente: Você tem a promessa.
+
+            Realizada: Você tem o pc.
+            Recusada: Você não aceitou a promessa.
+
+            Estabelecida: Aceita ou Recusa.
+-->
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <div class="container">
+
+    </div>
+
+    <!-- puxando a api -->
+    <!-- estamos abaixo usando o javascript-->
+    <script>
+        
+        
+        //fetch('https://rickandmortyapi.com/api/character') -> fez a requisição
+        //.then(response => response.json()) -> Se a requisição for bem sucedida(then), a reposta será um json()
+        //.then(json => console.log) ->verificando se ta funcionando, colocar o json no console("print")
+        
+        fetch('https://rickandmortyapi.com/api/character',{
+            method: 'GET'
+        })
+        .then(response => response.json())
+        //(then) --> o que queremos que aconteça caso ocorra uma requisição
+        .then(function(json){
+
+            var container = document.querySelector('.container');
+            
+            //results é o que tem os dados no array dessa api
+            //criando uma função "function(results)"
+            json.results.map(function(results){
+                
+                //fazendo as imagens dessa api aparecerem na tela
+                //é necessário saber o nome dos arrays dessa api
+                //pode pegar várias coisas da api além das imagens
+                container.innerHTML+=`
+                     <div> <img src = `+ results.image +`></div> 
+                     <strong>`+ results.name +` </strong>
+                     <h2>` + results.species +` </span>
+                     <hr>
+                `;
+
+            })
+
+        })
+
+    </script>
+</body>
+</html>
